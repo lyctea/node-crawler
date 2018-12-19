@@ -6,7 +6,6 @@ var ProgressBar = require('../util/progress-bar');
 var pb = new ProgressBar('下载进度', 100);
 
 function getMoveHomePage (url, i) {
-  // console.log('正在获取: ' + url);``
   return new Promise((resolve, reject) => {
     http.get(`${url}${i}.html`, function (res, err) {
       if (err) reject(err);
@@ -35,7 +34,6 @@ function getMoveHomePage (url, i) {
 }
 
 function getBtLink (urls, n) {
-  // console.log('正在获取' + urls[n].title);
   pb.render({completed: ++progress, total: urls.length});
   
   return new Promise((resolve, reject) => {
@@ -69,7 +67,6 @@ function save (btLink) {
   return new Promise((resolve, reject) => {
     MongoClient.connect(mongo_url, {useNewUrlParser: true}, function (err, db) {
       if (err) reject(err);
-      // console.log('数据库连接成功');
       const myDb = db.db('dytt8-url');
       const collection = myDb.collection('dytt8-url');
       
